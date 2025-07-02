@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login and More</title>
+
+  <!-- External Styles and Icons -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://embed.acuityscheduling.com/embed/button/35648904.css" id="acuity-button-styles" />
+  <script src="https://embed.acuityscheduling.com/embed/button/35648904.js" async></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 5vw;
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .beautiful-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1.2em 2.5em;
+      text-decoration: none;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+      text-align: center;
+      min-width: 220px;
+      justify-content: center;
+    }
+
+    .beautiful-btn i {
+      font-size: 1.2em;
+    }
+
+    .beautiful-btn:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .top-btn {
+      padding: 10px 20px;
+      background-color: #444;
+      color: white;
+      text-decoration: none;
+      font-size: 0.9em;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .top-btn:hover {
+      background-color: #666;
+    }
+
+    /* Gradient Buttons */
+    .btn-1 { background: linear-gradient(135deg, #6a11cb, #2575fc); }
+    .btn-2 { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+    .btn-3 { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
+    .btn-4 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .btn-5 { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+    .btn-6 { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+    .btn-7 { background: linear-gradient(135deg, #f8b400, #f85c00); }
+    .btn-8 { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    .btn-9 { background: linear-gradient(135deg, #43cea2, #185a9d); }
+    .btn-10 { background: linear-gradient(135deg, #fc466b, #3f5efb); }
+
+    .btn-1:hover { background: linear-gradient(135deg, #2575fc, #6a11cb); }
+    .btn-2:hover { background: linear-gradient(135deg, #ff4b2b, #ff416c); }
+    .btn-3:hover { background: linear-gradient(135deg, #5b86e5, #36d1dc); }
+    .btn-4:hover { background: linear-gradient(135deg, #38ef7d, #11998e); }
+    .btn-5:hover { background: linear-gradient(135deg, #4a00e0, #8e2de2); }
+    .btn-6:hover { background: linear-gradient(135deg, #feb47b, #ff7e5f); }
+    .btn-7:hover { background: linear-gradient(135deg, #f85c00, #f8b400); }
+    .btn-8:hover { background: linear-gradient(135deg, #0072ff, #00c6ff); }
+    .btn-9:hover { background: linear-gradient(135deg, #185a9d, #43cea2); }
+    .btn-10:hover { background: linear-gradient(135deg, #3f5efb, #fc466b); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .beautiful-btn {
+        font-size: 1em;
+        padding: 1em 2em;
+      }
+      h1 {
+        font-size: 6vw;
+      }
+      .button-container {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .beautiful-btn {
+        font-size: 0.9em;
+        padding: 0.8em 1.8em;
+      }
+      h1 {
+        font-size: 7vw;
+      }
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .top-btn {
+        font-size: 0.8em;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+
+  <script>
+    window.addEventListener("load", function () {
+      document.getElementById("loader").style.display = "none";
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Top Navigation -->
+  <div class="top-right">
+    <a href="index.html" class="top-btn">Home</a>
+  </div>
+
+  <h1>Login and More</h1>
+
+  <!-- Buttons -->
+  <div class="button-container">
+
+    <a href="booking.html" target="_blank" class="acuity-embed-button beautiful-btn btn-1">
+      <i class="fas fa-calendar-check"></i> Schedule Appointment
+    </a>
+
+    <a href="Newlogin.html" target="_blank" class="beautiful-btn btn-2">
+      <i class="fas fa-user-lock"></i> Login / Sign Up
+    </a>
+
+ <a href="admin.html" class="beautiful-btn btn-10" target="_blank">
+      <i class="fas fa-user-shield"></i> Admin Login
+    </a>
+      
+    <a href="https://ch-learned.netlify.app/" target="_blank" class="beautiful-btn btn-3">
+      <i class="fas fa-graduation-cap"></i> Learning Web
+    </a>
+
+    <a href="https://student-ch.netlify.app/" target="_blank" class="beautiful-btn btn-4">
+      <i class="fas fa-user-graduate"></i> Student Login
+    </a>
+
+    <a href="404.html" class="beautiful-btn btn-5">
+      <i class="fas fa-mosque"></i> Mosque Web
+    </a>
+
+    <a href="404.html" class="beautiful-btn btn-6">
+      <i class="fas fa-car"></i> Car Web
+    </a>
+
+    <a href="404.html" class="beautiful-btn btn-7">
+      <i class="fas fa-school"></i> School Web
+    </a>
+
+    <a href="Quote.html" class="beautiful-btn btn-8">
+      <i class="fas fa-file-invoice-dollar"></i> Quote Generator
+    </a>
+
+    <a href="search.html" class="beautiful-btn btn-9" target="_blank">
+      <i class="fas fa-magnifying-glass"></i> Smart Search
+    </a>
+
+    
+
+  </div>
+</body>
+</html>
